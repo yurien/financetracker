@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
+</head>
+<body>
+    <div class="container container-full-width">
+        <div class="header">
+            <h1>Transaction History</h1>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Add Transaction</a>
+        </div>
+
+        <div class="dual-summary-container">
+            <div class="summary-section">
+                <h4>All-Time Summary</h4>
+                <div class="summary-cards-container">
+                    <div class="summary-card income">
+                        <h5>Total Income</h5>
+                        <p id="totalIncomeAll">₱ 0.00</p>
+                    </div>
+                    <div class="summary-card expense">
+                        <h5>Total Expenses</h5>
+                        <p id="totalExpenseAll">₱ 0.00</p>
+                    </div>
+                    <div class="summary-card balance">
+                        <h5>Net Balance</h5>
+                        <p id="netBalanceAll">₱ 0.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-section">
+                <h4>Filtered Summary</h4>
+                <div class="summary-cards-container">
+                    <div class="summary-card income">
+                        <h5>Total Income</h5>
+                        <p id="totalIncomeFiltered">₱ 0.00</p>
+                    </div>
+                    <div class="summary-card expense">
+                        <h5>Total Expenses</h5>
+                        <p id="totalExpenseFiltered">₱ 0.00</p>
+                    </div>
+                    <div class="summary-card balance">
+                        <h5>Net Balance</h5>
+                        <p id="netBalanceFiltered">₱ 0.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-container">
+            <div class="filter-group">
+                <label for="monthFilter">Filter by Month</label>
+                <select id="monthFilter">
+                    <option value="all">All Months</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="typeFilter">Filter by Type</label>
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="yearFilter">Filter by Year</label>
+                <select id="yearFilter">
+                    <option value="all">All Years</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="categoryFilter">Filter by Category</label>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+            <button id="resetFiltersBtn" class="btn-secondary">Reset</button>
+        </div>
+
+        <table id="transactionsTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="transactionsTbody">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="transactions.js"></script>
+</body>
+</html>

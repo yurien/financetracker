@@ -214,8 +214,6 @@ input[readonly] {
 .summary-card.expense p { color: var(--danger-accent); }
 .summary-card.balance p { color: var(--primary-accent); }
 
-/* Replace your old filter styles with this updated block */
-
 .filter-container {
     display: flex;
     gap: 20px;
@@ -224,14 +222,14 @@ input[readonly] {
     border-radius: 12px;
     margin-bottom: 30px;
     align-items: flex-end;
-    overflow-x: auto;
+    flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
 }
 
 .filter-group {
     display: flex;
-    flex-direction: column; /* This keeps the label on top */
+    flex-direction: column; 
     flex-grow: 1;
-    min-width: 160px; /* Gives each filter a comfortable minimum width */
+    min-width: 160px;
 }
 
 .filter-group label {
@@ -247,15 +245,23 @@ input[readonly] {
     flex-grow: 0;
 }
 
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
 #transactionsTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 30px;
-    border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     table-layout: fixed;
+    border: none;
+    min-width: 750px; /* Force table to be wide, enabling horizontal scroll */
 }
 
 #transactionsTable thead {
@@ -266,7 +272,7 @@ input[readonly] {
 #transactionsTable td {
     padding: 14px 18px;
     text-align: left;
-    border: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); /* Changed from full border to just bottom */
     overflow-wrap: break-word;
 }
 
@@ -286,6 +292,13 @@ input[readonly] {
 #transactionsTable tbody tr:hover {
     background-color: #2a2a3e;
 }
+#transactionsTable tbody tr td {
+     border-left: 1px solid var(--border-color); /* Add vertical borders back for cells */
+}
+#transactionsTable tbody tr td:first-child {
+    border-left: none; /* Remove border from the very first cell in a row */
+}
+
 
 #transactionsTable .amount {
     font-weight: 700;
@@ -295,19 +308,69 @@ input[readonly] {
 #transactionsTable .amount.expense { color: var(--danger-accent); }
 #no-transactions { text-align: center; padding: 40px; color: var(--text-secondary); }
 
-/* Add this new block to hide the stepper arrows from the number input */
-
+/* --- UTILITY & ANIMATIONS --- */
 /* For Chrome, Safari, Edge, Opera */
 #amount::-webkit-outer-spin-button,
 #amount::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 /* For Firefox */
 #amount[type=number] {
     -moz-appearance: textfield;
 }
-
-/* --- ANIMATIONS --- */
+.auth-container {
+    max-width: 450px;
+    margin-top: 5vh;
+}
+.auth-links {
+    text-align: center;
+    margin-top: 25px;
+}
+.auth-links a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.auth-links span {
+    color: var(--text-secondary);
+    margin: 0 10px;
+}
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 25px 20px;
+    }
+    .top-buttons {
+        flex-direction: column;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    /* Transactions Page */
+    .dual-summary-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .summary-cards-container {
+        flex-direction: column;
+    }
+    .summary-card p {
+        font-size: 1.3rem;
+    }
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+    }
+    .filter-container button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

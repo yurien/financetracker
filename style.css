@@ -1,0 +1,313 @@
+/* --- VARIABLES & GLOBAL STYLES --- */
+:root {
+    --bg-color: #12121c;
+    --surface-color: #1d1d2b;
+    --primary-accent: #00a8ff;
+    --danger-accent: #e74c3c;
+    --success-accent: #2ecc71;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --border-color: #2a2a3e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* --- MAIN LAYOUT & HEADER --- */
+.container {
+    width: 100%;
+    max-width: 650px;
+    background-color: var(--surface-color);
+    padding: 30px 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.container-full-width {
+    max-width: 95%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-weight: 700;
+    color: var(--primary-accent);
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* --- BUTTONS & LINKS --- */
+.top-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-secondary, .btn-danger {
+    flex-grow: 1;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary i, .btn-secondary i {
+    margin-right: 8px;
+}
+
+.btn-primary { background-color: var(--primary-accent); color: white; }
+.btn-secondary { background-color: var(--border-color); color: var(--text-primary); }
+.btn-danger { background-color: var(--danger-accent); color: white; }
+.btn-primary:hover, .btn-secondary:hover, .btn-danger:hover { transform: translateY(-2px); }
+
+#transactionForm .btn-primary,
+#addCategoryForm .btn-primary,
+#removeCategoryForm .btn-danger {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* --- FORMS --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+    overflow-y: hidden;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+}
+
+input[readonly] {
+    background-color: #2a2a3e;
+    cursor: not-allowed;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+/* --- MODAL --- */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
+.modal-content { background-color: var(--surface-color); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); width: 90%; max-width: 450px; position: relative; animation: fadeIn 0.3s; }
+.modal-content h2 { border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 20px; }
+.modal-content h3 { margin-top: 10px; margin-bottom: 20px; color: var(--primary-accent); font-weight: 600; }
+.close-btn { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 28px; font-weight: bold; cursor: pointer; }
+.modal-hr { border: none; height: 1px; background-color: var(--border-color); margin: 30px 0; }
+
+/* --- TRANSACTION PAGE --- */
+.back-link { display: inline-block; margin-top: 10px; color: var(--primary-accent); text-decoration: none; font-weight: 600; }
+
+.dual-summary-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.summary-section {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.summary-section h4 {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    font-size: 1rem;
+}
+
+.summary-cards-container {
+    display: flex;
+    gap: 15px;
+}
+
+.summary-card {
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+}
+
+.summary-card h5 {
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.summary-card p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.summary-card.income p { color: var(--success-accent); }
+.summary-card.expense p { color: var(--danger-accent); }
+.summary-card.balance p { color: var(--primary-accent); }
+
+/* Replace your old filter styles with this updated block */
+
+.filter-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    align-items: flex-end;
+    overflow-x: auto;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column; /* This keeps the label on top */
+    flex-grow: 1;
+    min-width: 160px; /* Gives each filter a comfortable minimum width */
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.filter-container button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    flex-basis: 100px;
+    flex-grow: 0;
+}
+
+#transactionsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    table-layout: fixed;
+}
+
+#transactionsTable thead {
+    background-color: #2a2a3e;
+}
+
+#transactionsTable th,
+#transactionsTable td {
+    padding: 14px 18px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+    overflow-wrap: break-word;
+}
+
+#transactionsTable th {
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+#transactionsTable th:nth-child(1) { width: 15%; } /* Date */
+#transactionsTable th:nth-child(2) { width: 10%; } /* Type */
+#transactionsTable th:nth-child(3) { width: 20%; } /* Category */
+#transactionsTable th:nth-child(4) { width: 15%; } /* Amount */
+#transactionsTable th:nth-child(5) { width: 40%; } /* Description */
+
+#transactionsTable tbody tr:hover {
+    background-color: #2a2a3e;
+}
+
+#transactionsTable .amount {
+    font-weight: 700;
+}
+
+#transactionsTable .amount.income { color: var(--success-accent); }
+#transactionsTable .amount.expense { color: var(--danger-accent); }
+#no-transactions { text-align: center; padding: 40px; color: var(--text-secondary); }
+
+/* Add this new block to hide the stepper arrows from the number input */
+
+/* For Chrome, Safari, Edge, Opera */
+#amount::-webkit-outer-spin-button,
+#amount::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+#amount[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }

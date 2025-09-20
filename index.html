@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>SESPEÑE FINANCE</h1>
+            <p>Track your transactions with elegance</p>
+        </div>
+        
+        <div class="top-buttons">
+            <button type="button" id="openManageModalBtn" class="btn-secondary"><i class="fas fa-cog"></i> Manage Categories</button>
+            <a href="transactions.html" class="btn-secondary"><i class="fas fa-list-ul"></i> View Transactions</a>
+        </div>
+        
+        <form id="transactionForm">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>-- Select a Category --</option>
+                    <optgroup label="Expenses" id="expense-options"></optgroup>
+                    <optgroup label="Income" id="income-options"></optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <input type="text" id="type" name="type" readonly placeholder="Auto-filled">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount (PHP)</label>
+                <input type="number" id="amount" name="amount" placeholder="₱ 0.00" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="3" placeholder="e.g., Monthly groceries..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary"><i class="fas fa-plus"></i> Add Transaction</button>
+        </form>
+    </div>
+
+    <div id="manageCategoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Manage Categories</h2>
+            <div class="add-category-section">
+                <h3><i class="fas fa-plus-circle"></i> Add New Category</h3>
+                <form id="addCategoryForm">
+                    <div class="form-group">
+                        <label for="newCategoryName">Category Name</label>
+                        <input type="text" id="newCategoryName" placeholder="e.g., Internet Bill" required>
+                    </div>
+                    <div class="form-group radio-group">
+                        <label><input type="radio" name="newCategoryType" value="expense" checked> Expense</label>
+                        <label><input type="radio" name="newCategoryType" value="income"> Income</label>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Category</button>
+                </form>
+            </div>
+            <!-- <hr class="modal-hr"> -->
+            <div class="remove-category-section">
+                <h3><i class="fas fa-trash-alt"></i> Remove Existing Category</h3>
+                <form id="removeCategoryForm">
+                    <div class="form-group">
+                        <label for="categoryToRemove">Select Category</label>
+                        <select id="categoryToRemove" required>
+                            <option value="" disabled selected>-- Select a Category --</option>
+                            <optgroup label="Expenses" id="remove-expense-options"></optgroup>
+                            <optgroup label="Income" id="remove-income-options"></optgroup>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-danger">Remove Selected</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
